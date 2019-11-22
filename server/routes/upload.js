@@ -70,7 +70,7 @@ app.put('/upload/:tipo/:id', function(req, res) {
                 ok: false,
                 err
             });
-        if ( tipo === 'usuario'){
+        if ( tipo === 'usuarios'){
             imagenUsuario(id, res, nombreArchivo);
         }else{
             imagenProducto(id, res, nombreArchivo);
@@ -86,7 +86,9 @@ function imagenUsuario(id, res, nombreArchivo){
             borraArchivo(nombreArchivo,'usuarios');
             return res.status(500).json({
                 ok: false,
-                err
+                err: {
+                    message: 'Error usuario'
+                }
             });
         }
 
@@ -95,7 +97,7 @@ function imagenUsuario(id, res, nombreArchivo){
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: 'El usuariuo no existe'
+                    message: `El usuario no existe ${id}`
                 }
             });
         }
@@ -134,7 +136,7 @@ function imagenProducto(id, res, nombreArchivo){
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: 'El usuariuo no existe'
+                    message: 'El producto no existe'
                 }
             });
         }
